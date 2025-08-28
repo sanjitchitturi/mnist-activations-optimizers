@@ -12,17 +12,13 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras.utils import to_categorical
 
-# =========================
 # Setup
-# =========================
 RESULTS_DIR = "results"
 MODELS_DIR = "models"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 os.makedirs(MODELS_DIR, exist_ok=True)
 
-# =========================
 # Load Dataset
-# =========================
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 # Normalize
@@ -33,17 +29,13 @@ x_test = x_test.astype("float32") / 255.0
 y_train_cat = to_categorical(y_train, 10)
 y_test_cat = to_categorical(y_test, 10)
 
-# =========================
 # Experiment Configs
-# =========================
 activations = ["relu", "sigmoid", "tanh"]
 optimizers = ["sgd", "adam", "rmsprop"]
 
 results = []
 
-# =========================
 # Model Builder
-# =========================
 def build_model(activation, optimizer):
     model = Sequential([
         Flatten(input_shape=(28, 28)),
@@ -58,9 +50,7 @@ def build_model(activation, optimizer):
     )
     return model
 
-# =========================
 # Run Experiments with Progress Bar
-# =========================
 best_acc = 0.0
 best_model = None
 best_name = None
@@ -96,24 +86,18 @@ for opt, act in tqdm(exp_combos, desc="Running Experiments"):
         best_model = model
         best_name = f"{opt}_{act}"
 
-# =========================
 # Save Results Table
-# =========================
 df = pd.DataFrame(results, columns=["Optimizer", "Activation", "Train Accuracy", "Test Accuracy", "Train Loss", "Test Loss"])
 df.to_csv(os.path.join(RESULTS_DIR, "results.csv"), index=False)
 
-# =========================
 # Plot Bar Chart of Test Accuracy
-# =========================
 plt.figure(figsize=(8, 5))
 sns.barplot(data=df, x="Optimizer", y="Test Accuracy", hue="Activation")
 plt.title("Test Accuracy by Optimizer & Activation")
 plt.savefig(os.path.join(RESULTS_DIR, "results.png"))
 plt.close()
 
-# =========================
 # Heatmap
-# =========================
 heatmap_data = df.pivot("Optimizer", "Activation", "Test Accuracy")
 plt.figure(figsize=(6, 4))
 sns.heatmap(heatmap_data, annot=True, fmt=".4f", cmap="Blues")
@@ -121,9 +105,7 @@ plt.title("Accuracy Heatmap")
 plt.savefig(os.path.join(RESULTS_DIR, "results_heatmap.png"))
 plt.close()
 
-# =========================
 # Confusion Matrix for Best Model
-# =========================
 y_pred = best_model.predict(x_test).argmax(axis=1)
 cm = confusion_matrix(y_test, y_pred)
 
@@ -133,9 +115,7 @@ plt.title(f"Confusion Matrix (Best Model: {best_name})")
 plt.savefig(os.path.join(RESULTS_DIR, "confusion_matrix.png"))
 plt.close()
 
-# =========================
 # Print Summary Table
-# =========================
 print("\nFinal Results Summary:")
 print(df.sort_values(by="Test Accuracy", ascending=False).to_string(index=False))
 
