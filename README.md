@@ -41,7 +41,7 @@ pip install tensorflow numpy pandas matplotlib seaborn scikit-learn tqdm
 ## Project Structure
 
 ```
-MNIST-Activations-Optimizers/
+mnist-activations-optimizers/
 │── train.py               
 │── models/                
 │── results/             
@@ -56,7 +56,7 @@ MNIST-Activations-Optimizers/
 
 ## About the Provided Script
 
-The version of the script associated with this README does the following (matches the provided code):
+The version of the script associated with this README does the following:
 
 * Uses the built-in `mnist` dataset from `tensorflow.keras.datasets`.
 * Normalizes input images to `[0, 1]` and keeps the original `(28, 28)` shape until the model `Flatten` layer.
@@ -71,15 +71,15 @@ The version of the script associated with this README does the following (matche
 * Saves each model to `models/model_<optimizer>_<activation>.h5`.
 * Tracks the best model by **test accuracy** and uses it to create a confusion matrix saved to `results/confusion_matrix.png`.
 
-### Hyperparameters (as used in the script)
+### Hyperparameters
 
 * Activations: `['relu', 'sigmoid', 'tanh']`
-* Optimizers: `['sgd', 'adam', 'rmsprop']` (passed as strings to `model.compile`)
+* Optimizers: `['sgd', 'adam', 'rmsprop']`
 * Epochs: `10`
 * Batch size: `128`
 * Validation split: `0.1`
 
-> Note: The script uses each optimizer’s default settings when you pass the string (e.g. default learning rates). If you want reproducible results or specific learning rates, create optimizer objects (e.g. `optimizers.SGD(learning_rate=0.01)`) and set seeds for NumPy/TensorFlow.
+> Note: The script uses each optimizer’s default settings when you pass the string. If you want reproducible results or specific learning rates, create optimizer objects (e.g. `optimizers.SGD(learning_rate=0.01)`) and set seeds for NumPy/TensorFlow.
 
 ---
 
@@ -115,7 +115,7 @@ Plots and the CSV let you compare which optimizer + activation pairs generalize 
 
 ---
 
-## Example Output (format)
+## Example Output
 
 At the end of training you will see a printed summary similar to:
 
