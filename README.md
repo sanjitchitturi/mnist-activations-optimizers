@@ -15,8 +15,8 @@ The code trains every combination of (optimizer, activation) for 10 epochs, save
 ## Real-World Use Cases
 
 * Bank check processing.
-* Postal code recognition (postal sorting).
-* Digitizing handwritten forms (OCR).
+* Postal code recognition.
+* Digitizing handwritten forms.
 * Mobile document / note scanning apps.
 
 ---
@@ -27,8 +27,8 @@ The code trains every combination of (optimizer, activation) for 10 epochs, save
 * TensorFlow / Keras
 * NumPy, Pandas
 * Matplotlib, Seaborn
-* scikit-learn (confusion matrix)
-* tqdm (progress bars)
+* scikit-learn
+* tqdm
 
 Install dependencies:
 
