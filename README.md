@@ -42,21 +42,19 @@ pip install tensorflow numpy pandas matplotlib seaborn scikit-learn tqdm
 
 ```
 mnist-activations-optimizers/
-│── train.py               
-│── models/                
+│── train.py                          
 │── results/             
 │   ├── results.csv
 │   ├── results.png
 │   ├── results_heatmap.png
 │   └── confusion_matrix.png
+│── requirements.txt
 └── README.md
 ```
 
 ---
 
-## About the Provided Script
-
-The version of the script associated with this README does the following:
+## About the Script
 
 * Uses the built-in `mnist` dataset from `tensorflow.keras.datasets`.
 * Normalizes input images to `[0, 1]` and keeps the original `(28, 28)` shape until the model `Flatten` layer.
